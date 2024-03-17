@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/">Home</a>
+        <a href="/student-male">Get all male students</a>
+    </header>
+
+    <h1>Manage</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Avatar</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% students.forEach(student=> { %>
+                <tr>
+                    <td>
+                        <%= student.id %>
+                    </td>
+                    <td>
+                        <%= student.name %>
+                    </td>
+                    <td>
+                        <%= student.dob %>
+                    </td>
+                    <td>
+                        <%= student.gender ? 'Male' : 'Female' %>
+                    </td>
+                    <td>
+                        <img src="<%= student.avatar %>" alt="">
+                    </td>
+                    <td></td>
+                </tr>
+                <%}) %>
+        </tbody>
+    </table>
+</body>
+
+</html>

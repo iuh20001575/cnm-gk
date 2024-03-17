@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/">Home</a>
+        <a href="/student-male">Get all male students</a>
+    </header>
+
+    <h1>Update</h1>
+
+    <form action="/edit" method="post" enctype="multipart/form-data">
+        <input readonly value="<%= student.id %>" type="text" name="id" placeholder="Enter id">
+        <div>
+            <input value="<%= student.name %>" type="text" name="name" placeholder="Enter name">
+            <span class="error"></span>
+        </div>
+        <input value="<%= student.dob %>" type="date" name="dob" placeholder="Enter birthday">
+        <label>
+            <input checked="<%= student.gender %>" type="radio" name="gender" value="male">
+            <span>Male</span>
+        </label>
+        <label>
+            <input checked="<%= !student.gender %>" type="radio" name="gender" value="female">
+            <span>Female</span>
+        </label>
+        <input type="file" name="avatar" accept="image/*">
+        <button class="add" type="submit">Add</button>
+    </form>
+
+    <script>
+        const nameElement = document.querySelector('input[name="name"]');
+        const submit = document.querySelector('.add');
+
+        submit.addEventListener('click', (e) => {
+            const name = nameElement.value;
+
+            [...document.querySelectorAll('.error')].forEach(element => element.innerHTML = '');
+
+            if (!/[A-Z][a-z]*/.test(name.trim())) {
+                e.preventDefault();
+
+                const errorElement = nameElement.parentElement.querySelector('.error');
+
+                errorElement.innerHTML = 'Tên phải bắt đầu bằng ký tự hoa và theo sau là các ký tự thường';
+            }
+        })
+
+    </script>
+</body>
+
+</html>
